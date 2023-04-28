@@ -86,7 +86,6 @@ public class ELibrarySystem {
             boolean validLogin = false;
             
             if (userType.equals("admin")) {
-                // Check if the entered username and password match any of the valid admin credentials
                 for (int i = 0; i < adminUsernames.length; i++) {
                     if (username.equals(adminUsernames[i]) && password.equals(adminPasswords[i])) {
                         validLogin = true;
@@ -94,7 +93,6 @@ public class ELibrarySystem {
                     }
                 }
             } else if (userType.equals("librarian")) {
-                // Check if the entered username and password match any of the valid librarian credentials
                 for (int i = 0; i < librarianUsernames.length; i++) {
                     if (username.equals(librarianUsernames[i]) && password.equals(librarianPasswords[i])) {
                         validLogin = true;
