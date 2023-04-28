@@ -76,8 +76,7 @@ public class ELibrarySystem {
         public void actionPerformed(ActionEvent e) {
             String username = userField.getText();
             String password = new String(passField.getPassword());
-            
-            // Define the valid usernames and passwords for each user type
+
             String[] adminUsernames = {"Admin_01", "Admin_02", "Admin_03"};
             String[] adminPasswords = {"AdminOne", "AdminTwo", "AdminThree"};
             
@@ -103,8 +102,7 @@ public class ELibrarySystem {
                     }
                 }
             }
-            
-            // If the login is valid, show the appropriate message and close the login frame
+
             if (validLogin) {
                 JOptionPane.showMessageDialog(null, "Welcome to NU Library System");
                 loginFrame.dispose();
