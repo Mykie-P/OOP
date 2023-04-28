@@ -1,0 +1,124 @@
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class ELibrarySystem { 
+    private JFrame frame;
+    private JButton adminBtn, librarianBtn;
+    private JLabel title;
+    
+    public ELibrarySystem() {
+        frame = new JFrame(" ");
+        frame.setSize(400, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Container c = frame.getContentPane();
+        c.setLayout(null);
+        
+        title = new JLabel("Library Management System - JavaTPoint");
+        title.setBounds(80, 30, 300, 50);
+        
+        adminBtn = new JButton("Admin Login");
+        adminBtn.setBounds(130, 100, 120, 80);
+        adminBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                showLogin("admin");
+            }
+        });
+        
+        librarianBtn = new JButton("Librarian Login");
+        librarianBtn.setBounds(130, 200, 120, 80);
+        librarianBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                showLogin("librarian");
+            }
+        });
+
+        c.add(title);
+        c.add(adminBtn);
+        c.add(librarianBtn);
+        frame.setVisible(true);
+    }
+    
+    private void showLogin(String userType) {
+        JFrame loginFrame = new JFrame("Login");
+        loginFrame.setSize(300, 200);
+        loginFrame.setLocationRelativeTo(null);
+        Container c = loginFrame.getContentPane();
+        c.setLayout(null);
+
+        JLabel userLabel = new JLabel("Username:");
+        userLabel.setBounds(30, 30, 80, 30);
+        c.add(userLabel);
+
+        JTextField userField = new JTextField();
+        userField.setBounds(120, 30, 150, 30);
+        c.add(userField);
+
+        JLabel passLabel = new JLabel("Password:");
+        passLabel.setBounds(30, 70, 80, 30);
+        c.add(passLabel);
+
+        JPasswordField passField = new JPasswordField();
+        passField.setBounds(120, 70, 150, 30);
+        c.add(passField);
+
+        JButton loginBtn = new JButton("Login");
+        loginBtn.setBounds(100, 120, 80, 30);
+        loginBtn.addActionListener(new ActionListener() {
+        
+        public void actionPerformed(ActionEvent e) {
+            String username = userField.getText();
+            String password = new String(passField.getPassword());
+            
+            // Define the valid usernames and passwords for each user type
+            String[] adminUsernames = {"Admin_01", "Admin_02", "Admin_03"};
+            String[] adminPasswords = {"AdminOne", "AdminTwo", "AdminThree"};
+            
+            String[] librarianUsernames = {"Librarian_01", "Librarian_02", "Librarian_03"};
+            String[] librarianPasswords = {"LibOne", "LibTwo", "LibThree"};
+            
+            boolean validLogin = false;
+            
+            if (userType.equals("admin")) {
+                // Check if the entered username and password match any of the valid admin credentials
+                for (int i = 0; i < adminUsernames.length; i++) {
+                    if (username.equals(adminUsernames[i]) && password.equals(adminPasswords[i])) {
+                        validLogin = true;
+                        break;
+                    }
+                }
+            } else if (userType.equals("librarian")) {
+                // Check if the entered username and password match any of the valid librarian credentials
+                for (int i = 0; i < librarianUsernames.length; i++) {
+                    if (username.equals(librarianUsernames[i]) && password.equals(librarianPasswords[i])) {
+                        validLogin = true;
+                        break;
+                    }
+                }
+            }
+            
+            // If the login is valid, show the appropriate message and close the login frame
+            if (validLogin) {
+                JOptionPane.showMessageDialog(null, "Welcome to NU Library System");
+                loginFrame.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "INCORRECT USERNAME OR PASSWORD");
+            }
+        }
+    });
+    
+    c.add(loginBtn);
+    loginFrame.setVisible(true);
+}
+
+    public static void main(String[] args) {
+        ELibrarySystem system = new ELibrarySystem();
+        }
+    }
